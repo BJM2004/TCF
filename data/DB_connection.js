@@ -1,12 +1,14 @@
-const { default: mongoose } = require("mongoose");
-function connectDB(){
-    mongoose
-    .connect("mongodb://localhost:27017/quiz",{
-        useNewUrlParser:true,
-        useUnifiedTopology:true,
-        autoIndex: true
-    })
-    .then(()=>console.log('Connected to MongoDB'))
-    .catch((err)=>console.error('Could not connect to MongoDB',err));
-}
-module.exports=connectDB;
+const mongoose = require('mongoose');
+
+const connect = async () => {
+    try {
+        await mongoose.connect('mongodb://localhost:27017/quiz?authSource=admin', {
+            // Supprimez les options dépréciées
+        });
+        console.log('Connected to MongoDB');
+    } catch (error) {
+        console.error('Error connecting to MongoDB', error);
+    }
+};
+
+module.exports = connect;

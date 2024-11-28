@@ -40,6 +40,21 @@ async function create(req,res){
         res.status(500).json({message:"Erreur lors de la création de l'utilisateur",error:err});
     }
 }
+async function login(req,res){
+    const data=req.body;
+    try{
+        const user=await userService.login(data);
+        if(user){
+            res.status(200).json(user);
+        }
+        else{
+            res.status(404).json({message:"Utilisateur non trouvé"})
+        }
+    }
+    catch(err){
+        res.status(500).json({message:"Erreur lors de la connexion",error:err});
+    }
+}
 async function update(req,res){
     const userId=req.params.id;
     try{
@@ -73,5 +88,5 @@ async function remove(req,res){
     }
 }
 module.exports={
-    list,read,create,update,remove
+    list,read,create,update,remove,login
 }

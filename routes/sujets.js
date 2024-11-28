@@ -1,4 +1,5 @@
 const express=require('express');
+const authMiddleware=require('../middleware/authMiddleware');
 const router=express.Router();
 const sujetController=require('../controllers/sujets');
 //Afficher tous les sujets
@@ -6,9 +7,9 @@ router.get('/',sujetController.list);
 //Afficher un sujet en particulier
 router.get("/:id",sujetController.read);
 //Creer un sujet
-router.post("/",sujetController.create);
+router.post("/created",authMiddleware.authenticateToken,sujetController.create);
 //Modifier un sujet
-router.put("/:id",sujetController.update);
+router.put("/:id/update",authMiddleware.authenticateToken,sujetController.update);
 //Supprimer un sujet
-router.delete("/:id",sujetController.remove);
+router.delete("/:id/delete",authMiddleware.authenticateToken,sujetController.remove);
 module.exports=router;

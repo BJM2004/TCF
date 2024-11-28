@@ -28,11 +28,13 @@ async function read(req,res){
 async function create(req,res){
     const data=req.body;
     const sujetId=req.params.id; // Assurez-vous que l'ID du sujet est passé dans les paramètres de la requête
+    const file=req.file ? req.file.filename : null;
     data.sujet=sujetId;
+    data.fichier=file;
     try{
         const createdquestion_awnser=await question_awnserService.create(data);
         if(createdquestion_awnser){
-            res.status(201).json({message:"Question et réponse créés"});
+            res.status(201).json({message:"Question et réponses créés"});
         }
         else{
             res.status(400).json({message:'Erreur lors de l\'insertion'});

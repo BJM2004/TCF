@@ -6,9 +6,11 @@ router.get('/',userSController.list);
 //Afficher un utilisateur en particulier
 router.get("/:id",userSController.read);
 //Creer un utilisateur
-router.post("/",userSController.create);
+router.post("/register",userSController.create);
+//Se connecter
+router.post("/login",userSController.login);
 //Modifier un utilisateur
-router.put("/:id",userSController.update);
+router.put("/:id/update",userSController.update);
 //Supprimer un utilisateur
-router.delete("/:id",userSController.remove);
+router.delete("/:id/delete",userSController.remove);
 module.exports=router;

@@ -27,9 +27,7 @@ async function read(req,res){
 async function create(req,res){
     const data=req.body;
     console.log('data:',data);
-    
-
-    
+        
     try{
         const createdSujet=await sujetService.create(data);
         if(createdSujet){
