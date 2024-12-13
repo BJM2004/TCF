@@ -1,20 +1,30 @@
-const Sujet=require('../data/sujets');
-async function findAll(){
-    return await Sujet.find();
-}
-async function find(sujetId){
-    return await Sujet.findById(sujetId);
-}
-async function create(data){
-    const sujet=new Sujet(data);
+const Sujet = require('../data/sujets');
+
+async function createSujet(data) {
+    const sujet = new Sujet(data);
     return await sujet.save();
 }
-async function update(sujetId,data){
-    return await Sujet.findByIdAndUpdate(sujetId,data,{new:true});
+
+async function findAllSujets() {
+    return await Sujet.find();
 }
-async function remove(sujetId){
+
+async function findSujetById(sujetId) {
+    return await Sujet.findById(sujetId);
+}
+
+async function updateSujet(sujetId, data) {
+    return await Sujet.findByIdAndUpdate(sujetId, data, { new: true });
+}
+
+async function deleteSujet(sujetId) {
     return await Sujet.findByIdAndRemove(sujetId);
 }
-module.exports={
-    findAll,find,create,update,remove
+
+module.exports = {
+    createSujet,
+    findAllSujets,
+    findSujetById,
+    updateSujet,
+    deleteSujet
 };
